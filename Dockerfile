@@ -1,9 +1,3 @@
-FROM openjdk:17-alpine
-        
-EXPOSE 8080
- 
-ENV APP_HOME /var/lib/docker
-
-WORKDIR $APP_HOME
-
-CMD ["java", "-jar", "app.jar"]
+FROM tomcat:latest
+RUN cp -R  /usr/local/tomcat/webapps.dist/*  /usr/local/tomcat/webapps
+COPY /webapp/target/*.war /usr/local/tomcat/webapps
